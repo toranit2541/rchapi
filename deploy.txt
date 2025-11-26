@@ -1,0 +1,52 @@
+git clone https://github.com/toranit2541/rchapi-main.git
+
+cd rchapi-main
+
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip install --upgrade pip
+
+pip install -r t.txt
+
+python manage.py migrate
+
+python manage.py collectstatic
+
+python manage.py createsuperuser
+
+
+if error 
+
+SELECT 
+    name, 
+    type_desc 
+FROM sys.objects 
+WHERE name LIKE '%token_id%';
+
+SELECT 
+    name, 
+    type_desc 
+FROM sys.objects 
+WHERE name LIKE '%token_id%';
+
+SELECT TABLE_NAME 
+FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_TYPE = 'BASE TABLE';
+
+SELECT TABLE_NAME, CONSTRAINT_NAME 
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS 
+WHERE CONSTRAINT_NAME = 'UQ__token_bl__CB3C9E161F3A3CF4';
+
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE 
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS 
+WHERE TABLE_NAME = 'token_blacklist_blacklistedtoken';
+
+SELECT 
+    name, 
+    type_desc 
+FROM sys.objects 
+WHERE parent_object_id = OBJECT_ID('token_blacklist_blacklistedtoken');
+
+ALTER TABLE token_blacklist_blacklistedtoken DROP CONSTRAINT UQ__token_bl__CB3C9E161F3A3CF4;
