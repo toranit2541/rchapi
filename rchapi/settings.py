@@ -39,16 +39,13 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 CORS_ALLOW_ALL_ORIGINS = False
+
+
 CORS_ALLOWED_ORIGINS = [
-        "https://www.ruamchai.com",
-        "https://ruamchai.com",
-        "http://localhost:8000"
+    "http://192.168.142.137",       # NGINX reverse proxy
+    "http://192.168.142.135:5173",  # React dev server
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://www.ruamchai.com",
-    "https://ruamchai.com",
-]
 
 CORS_ALLOW_METHODS = [
     "GET",
@@ -60,20 +57,21 @@ CORS_ALLOW_METHODS = [
 ]
 
 
-INTERNAL_IPS = ['192.168.0.254','192.168.26.9']
+INTERNAL_IPS = ['192.168.0.254','192.168.26.9',"http://192.168.142.137"]
 
 # Fix this
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'fallback-key-change-this')
 
 
 ALLOWED_HOSTS = [
-    'ruamchai.com',
-    'www.ruamchai.com',
-    '192.168.0.254',
-    '192.168.26.9',
-    '192.168.10.111',
+    # 'ruamchai.com',
+    # 'www.ruamchai.com',
+    # '192.168.0.254',
+    # '192.168.26.9',
+    # '192.168.10.111',
     '127.0.0.1',
     'localhost',
+    '192.168.142.137',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -153,6 +151,7 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT', '1433'),
         "OPTIONS": {
             "driver": os.getenv('DB_DRIVER', 'ODBC Driver 17 for SQL Server'),
+            'unicode_results': True,
         },
     },
 }
@@ -173,9 +172,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bangkok'
 USE_I18N = True
-USE_TZ = True
+USE_TZ = False   # SQL Server + TZ can cause problems
 STATIC_URL = '/static/'
 APPEND_SLASH = False
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -1,4 +1,4 @@
-#!/home/django/rchapi/rchenv/bin/python3
+#!/home/django/rchapi/rchenv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

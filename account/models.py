@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Account(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     gender = models.CharField(choices=[('MALE','MALE'),('FEMALE','FEMALE'),('OTHER','OTHER')],max_length=10)
     birthday = models.DateTimeField()
     phonenumber = models.CharField(max_length=10, blank=True, null=True)
 
     class Meta:
-        managed = False  # No migrations will be created for this model
+        managed = True  # No migrations will be created for this model
 
     
 class UserProfile(models.Model):
